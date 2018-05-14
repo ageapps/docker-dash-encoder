@@ -19,3 +19,8 @@ services:
 Your file should be in the `/data/in` folder in order to be accesed by the docker container (`./in/InMovie.mov` in this example). All files are generated in side the `/data/out` folder.
 
 By default the video is encoded into 3 qualities (1920x1080, 1280x720 and 640x360) for more info check `./convert.sh` file.
+
+To run it:
+```
+docker-compose up
+```
