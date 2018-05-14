@@ -7,4 +7,4 @@ services:
     - './convert.sh:/media/convert.sh'
     - './data/out:/media/out'
     - './data/in:/media/in'
-    command: bash ./convert.sh ./in/final2.mov
+    command: bash ./convert.sh ./in/InMovie.mov
