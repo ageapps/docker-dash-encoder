@@ -1,0 +1,10 @@
+version: '3'
+services:
+  encoder:
+    build: .
+    image: docker-dash-encoder
+    volumes:
+    - './convert.sh:/media/convert.sh'
+    - './data/out:/media/out'
+    - './data/in:/media/in'
+    command: bash ./convert.sh ./in/final2.mov
