@@ -1,0 +1,9 @@
+version: '3'
+services:
+  encoder:
+    build: .
+    image: docker-dash-encoder:shaka
+    volumes:
+    - './convert-shaka.sh:/media/convert-shaka.sh'
+    - './media/in:/media/in'
+    command: bash ./convert-shaka.sh ./in/pepe.mp4

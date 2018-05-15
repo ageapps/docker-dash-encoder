@@ -31,4 +31,9 @@ do
         -minrate ${rate}k -maxrate ${rate}k -bufsize ${rate}k -b:v ${rate}k \
         -y $outfile
 done
-    MP4Box -dash 4000 -rap -bs-switching no -profile live -out $outdir/manifest.mpd $mp4streams
+    packager \
+        'in=h264_baseline_360p_600.mp4,stream=video,init_segment=h264_360p/init.mp4,segment_template=h264_360p/$Number$.m4s' \
+        'in=h264_baseline_480p_1000.mp4,stream=video,init_segment=h264_480p/init.mp4,segment_template=h264_480p/$Number$.m4s' \
+        'in=h264_baseline_720p_3000.mp4,stream=video,init_segment=h264_720p/init.mp4,segment_template=h264_720p/$Number$.m4s' \
+        'in=h264_baseline_1080p_6000.mp4,stream=video,init_segment=h264_1080p/init.mp4,segment_template=h264_1080p/$Number$.m4s' \
+        --generate_static_mpd --mpd_output h264.mpd

@@ -5,6 +5,5 @@ services:
     image: docker-dash-encoder
     volumes:
     - './convert.sh:/media/convert.sh'
-    - './data/out:/media/out'
-    - './data/in:/media/in'
-    command: bash ./convert.sh ./in/InMovie.mov
+    - './media/in:/media/in'
+    command: bash ./convert.sh ./in/pepe.mp4
