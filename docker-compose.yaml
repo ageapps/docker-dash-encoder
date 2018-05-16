@@ -4,6 +4,6 @@ services:
     build: .
     image: docker-dash-encoder
     volumes:
-    - './convert.sh:/media/convert.sh'
-    - './media/in:/media/in'
-    command: bash ./convert.sh ./in/pepe.mp4
+    - './convert.sh:/encoder/convert.sh'
+    - './media:/media'
+    command: bash ./convert.sh /media/in/whooping3.mp4

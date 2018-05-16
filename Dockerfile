@@ -9,7 +9,7 @@ RUN \
       apt-get upgrade -y && \
       apt-get install -y subversion gcc software-properties-common make zlib1g-dev 
 
-WORKDIR /media
+WORKDIR /encoder
 
 # Install MP4Box from gpac
 

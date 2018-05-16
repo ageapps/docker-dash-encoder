@@ -10,7 +10,7 @@ RUN \
       apt-get install -y software-properties-common
 
 
-WORKDIR /media
+WORKDIR /encoder
 
 # Install ffmmpeg with x264 encoder
 

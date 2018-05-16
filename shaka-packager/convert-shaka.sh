@@ -3,7 +3,7 @@
 inputpath=$1
 inputfile=$(basename "$inputpath")
 filename=${inputfile%.*}
-outdir="./out/$filename"
+outdir="/media/out/$filename"
 QUALITIES=( "360" "480" "720" "1080" )
 RATES=( "600" "1000" "3000" "6000" )
 LEVELS=( "3.0" "3.1" "4.0" "4.2" )
@@ -31,7 +31,9 @@ do
         -minrate ${rate}k -maxrate ${rate}k -bufsize ${rate}k -b:v ${rate}k \
         -y $outfile
 done
+    cd $outdir
     packager \
+        'in=h264_baseline_360p_600.mp4,stream=audio,init_segment=audio/init.mp4,segment_template=audio/$Number$.m4s' \
         'in=h264_baseline_360p_600.mp4,stream=video,init_segment=h264_360p/init.mp4,segment_template=h264_360p/$Number$.m4s' \
         'in=h264_baseline_480p_1000.mp4,stream=video,init_segment=h264_480p/init.mp4,segment_template=h264_480p/$Number$.m4s' \
         'in=h264_baseline_720p_3000.mp4,stream=video,init_segment=h264_720p/init.mp4,segment_template=h264_720p/$Number$.m4s' \

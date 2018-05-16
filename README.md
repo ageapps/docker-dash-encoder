@@ -11,9 +11,8 @@ services:
     build: .
     image: docker-dash-encoder
     volumes:
-    - './convert.sh:/media/convert.sh'
-    - './media/out:/media/out'
-    - './media/in:/media/in'
+    - './convert.sh:/encoder/convert.sh'
+    - './media:/media'
     command: bash ./convert.sh ./in/InMovie.mov
 ````
 Your file should be in the `/media/in` folder in order to be accesed by the docker container (`./in/InMovie.mov` in this example). All files are generated in side the `/media/out` folder.
@@ -23,19 +22,21 @@ By default the video is encoded into 3 qualities (1920x1080, 1280x720 and 640x36
 To run it:
 ```
 docker-compose up
+# or with one single command
+docker run -v $(pwd)/media:/media docker-dash-encoder bash ./convert.sh /media/in/InMovie.mp4
 ```
 ## Usage with Shaka Packager
 Check put the `docker-compose.yaml`:
 ````
 version: '3'
 services:
-  encoder:
-    build: .
+  shaka-encoder:
+    build: ./shaka-packager
     image: docker-dash-encoder:shaka
     volumes:
-    - './convert-shaka.sh:/media/convert-shaka.sh'
-    - './media/in:/media/in'
-    command: bash ./convert-shaka.sh ./in/pepe.mp4
+    - './shaka-packager/convert-shaka.sh:/encoder/convert-shaka.sh'
+    - './media:/media'
+    command: bash ./convert-shaka.sh /media/in/InMovie.mp4
 ````
 Your file should be in the `/media/in` folder in order to be accesed by the docker container (`./in/InMovie.mov` in this example). All files are generated in side the `/media/out` folder.
 
@@ -44,6 +45,8 @@ By default the video is encoded into 3 qualities (1920x1080, 1280x720 and 640x36
 To run it:
 ```
 docker-compose -f docker-compose.shaka.yaml up
+# or with one single command
+docker run -v $(pwd)/media:/media docker-dash-encoder:shaka bash ./convert-shaka.sh /media/in/InMovie.mp4
 ```
 ## Test with local server
 Check put the `docker-compose.nginx.yaml`:
