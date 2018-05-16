@@ -6,4 +6,4 @@ services:
     volumes:
     - './shaka-packager/convert-shaka.sh:/encoder/convert-shaka.sh'
     - './media:/media'
-    command: bash ./convert-shaka.sh /media/in/whooping3.mp4
+    command: bash /encoder/convert-shaka.sh /media/in/Teleprompter.mp4

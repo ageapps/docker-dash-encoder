@@ -6,4 +6,4 @@ services:
     volumes:
     - './convert.sh:/encoder/convert.sh'
     - './media:/media'
-    command: bash ./convert.sh /media/in/whooping3.mp4
+    command: bash ./convert.sh /media/in/Teleprompter.mp4

@@ -19,8 +19,6 @@ RUN \
       apt-get update -y && \
       apt install ffmpeg libav-tools x264 -y
 
-WORKDIR shaka_packager
-
 COPY convert-shaka.sh .
 
 
