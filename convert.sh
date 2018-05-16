@@ -24,12 +24,12 @@ do
     echo "Enconding $filename into MPEG4 Q:$quality R:$rate L:$level"
     outfile="$outdir/h264_baseline_${quality}p_${rate}.mp4"
     mp4streams+=" $outfile#video:id=h264_${quality}" 
-    # ffmpeg -i $inputpath -c:a copy \
-    #     -vf "scale=-2:$quality" \
-    #     -c:v libx264 -profile:v baseline -level:v $level \
-    #     -x264opts scenecut=0:open_gop=0:min-keyint=72:keyint=72 \
-    #     -minrate ${rate}k -maxrate ${rate}k -bufsize ${rate}k -b:v ${rate}k \
-    #     -y $outfile
+    ffmpeg -i $inputpath -c:a copy \
+        -vf "scale=-2:$quality" \
+        -c:v libx264 -profile:v baseline -level:v $level \
+        -x264opts scenecut=0:open_gop=0:min-keyint=72:keyint=72 \
+        -minrate ${rate}k -maxrate ${rate}k -bufsize ${rate}k -b:v ${rate}k \
+        -y $outfile
 done
     MP4Box -dash 4000 -rap -bs-switching no -profile live -segment-ext null -out $outdir/manifest.mpd "$outdir/h264_baseline_${QUALITIES[0]}p_${RATES[0]}.mp4#audio" $mp4streams
 

@@ -69,6 +69,8 @@ This will run a static webserver in port 8000 where you can access all files gen
 To run it:
 ```
 docker-compose -f docker-compose.nginx.yaml up
+# or with one single command
+docker run -v $(pwd)/media:/media docker-dash-encoder:nginx
 ```
 
 ## Resources
